@@ -12,3 +12,14 @@ phonebook[phone] = {
 }
 
 print(phonebook)
+
+name = input("Name:")
+phone = input("Phone:")
+address = input("Addres:")
+
+phonebook[phone] = {
+    "name": name,
+    "address": address
+}
+
+print(phonebook)
