@@ -35,6 +35,8 @@ for index, file_name in enumerate(photo_list):
     print(file_name)
     for key, value in exif_data.items():
         tag_name = ExifTags.TAGS.get(key)
+        if not tag_name:
+            continue
 
         print(f"\t{tag_name}: {value}")
 
