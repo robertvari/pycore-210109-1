@@ -18,9 +18,14 @@ sheet["B1"] = "Date"
 sheet["C1"] = "Camera"
 sheet["D1"] = "Lens"
 sheet["E1"] = "ISO"
+sheet["F1"] = "Dimensions"
 
-for photo in photo_list:
-    pass
+for index, file_name in enumerate(photo_list):
+    file_path = os.path.join(folder_path, file_name)
+
+    img = Image.open(file_path)
+
+    sheet[f"F{index + 2}"] = f"{img.size[0]}x{img.size[1]}"
 
 excel_file = "photo_data.xlsx"
 workbook.save(excel_file)
