@@ -4,6 +4,7 @@ from openpyxl import Workbook
 
 
 folder_path = r"D:\Photos\CIW"  # raw string
+swappedTags = dict([(value, key) for key, value in ExifTags.TAGS.items()])
 
 # list comprehension
 photo_list = [
@@ -37,23 +38,11 @@ for index, file_name in enumerate(photo_list):
     if not exif_data:
         continue
 
-    for key, value in exif_data.items():
-        tag_name = ExifTags.TAGS.get(key)
-        if not tag_name:
-            continue
-
-        if tag_name == "DateTimeOriginal":
-            sheet[f"B{row}"] = value
-
-        if tag_name == "Model":
-            sheet[f"C{row}"] = value
-
-        if tag_name == "LensModel":
-            # todo something is wrong ith this string...
-            sheet[f"D{row}"] = "---"
-
-        if tag_name == "ISOSpeedRatings":
-            sheet[f"E{row}"] = value
+    sheet[f"B{row}"] = exif_data[swappedTags["DateTimeOriginal"]]
+    sheet[f"C{row}"] = exif_data[swappedTags["Model"]]
+    # sheet[f"D{row}"] = exif_data[swappedTags["LensModel"]]
+    sheet[f"D{row}"] = '---'
+    sheet[f"E{row}"] = exif_data[swappedTags["ISOSpeedRatings"]]
 
 
 excel_file = os.path.join(folder_path, "photo_data.xlsx")
