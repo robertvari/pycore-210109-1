@@ -20,9 +20,9 @@ phonebook["06 20 999 8877"] = {
     "address": "Eger Fő utca 12."
 }
 
-print(phonebook)
+print(phonebook["06 20 999 8877"])
 
-# delete item
-del phonebook["06 20 999 8877"]
-
-print(phonebook)
+# # delete item
+# del phonebook["06 20 999 8877"]
+#
+# print(phonebook)
