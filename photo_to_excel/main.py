@@ -25,22 +25,34 @@ for index, file_name in enumerate(photo_list):
 
     img = Image.open(file_path)
 
+    row = index + 3
+
+    # add image name
+    sheet[f"A{row}"] = file_name
+
     # add data to dimension column
-    sheet[f"F{index + 2}"] = f"{img.size[0]}x{img.size[1]}"
+    sheet[f"F{row}"] = f"{img.size[0]}x{img.size[1]}"
 
     exif_data = img._getexif()  # Sometimes None
     if not exif_data:
         continue
 
-    print(file_name)
     for key, value in exif_data.items():
         tag_name = ExifTags.TAGS.get(key)
         if not tag_name:
             continue
 
-        print(f"\t{tag_name}: {value}")
+        if tag_name == "DateTimeOriginal":
+            sheet[f"B{row}"] = value
 
-    break
+        if tag_name == "Model":
+            sheet[f"C{row}"] = value
+
+        if tag_name == "LensModel":
+            sheet[f"D{row}"] = "---"
+
+        if tag_name == "ISOSpeedRatings":
+            sheet[f"E{row}"] = value
 
 excel_file = "photo_data.xlsx"
-# workbook.save(excel_file)
+workbook.save(excel_file)
