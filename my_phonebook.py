@@ -6,9 +6,17 @@ time.sleep(2)
 
 phonebook = {}
 
-if os.path.exists("phonebook.json"):
-    with open("phonebook.json") as f:
+
+if os.path.exists("phonebook.json"):  # if phonebook.json exists open it
+    with open("phonebook.json") as f:  # open .json file
         phonebook = json.load(f)
+
+    # print existing numbers
+    print("Existing numbers:")
+    for item in phonebook:
+        print(f"\t{item}")
+
+
 
 name = input("Name:")
 phone = input("Phone:")
