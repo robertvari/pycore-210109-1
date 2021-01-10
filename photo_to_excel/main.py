@@ -1,4 +1,7 @@
 import os
+from PIL import Image, ExifTags
+from openpyxl import Workbook
+
 
 folder_path = r"D:\Photos\CIW"  # raw string
 
@@ -8,5 +11,16 @@ photo_list = [
     if photo.lower().endswith(".jpg")
 ]
 
-print(photo_list)
-print( len(photo_list) )
+workbook = Workbook()
+sheet = workbook.active
+sheet["A1"] = "Name"
+sheet["B1"] = "Date"
+sheet["C1"] = "Camera"
+sheet["D1"] = "Lens"
+sheet["E1"] = "ISO"
+
+for photo in photo_list:
+    pass
+
+excel_file = "photo_data.xlsx"
+workbook.save(excel_file)
