@@ -9,3 +9,6 @@ print(f"My name is {my_name}. I'am {age} years old.")
 my_name = "Robert Vari"
 age = 60
 print(f"My name is {my_name}. I'am {age} years old.")
+
+
+name, age, address = "Robert", 42, "Budapest"
