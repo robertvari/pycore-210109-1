@@ -13,8 +13,8 @@ if os.path.exists("phonebook.json"):  # if phonebook.json exists open it
 
     # print existing numbers
     print("Existing numbers:")
-    for item in phonebook:
-        print(f"\t{item}")
+    for phone_number, data in phonebook.items():
+        print(f"\t {data['name']} {phone_number}")
 
 
 
