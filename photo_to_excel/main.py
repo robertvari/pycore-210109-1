@@ -49,12 +49,10 @@ for index, file_name in enumerate(photo_list):
             sheet[f"C{row}"] = value
 
         if tag_name == "LensModel":
-            # todo something is wrong ith this string...
-            sheet[f"D{row}"] = "---"
+            sheet[f"D{row}"] = repr(value).replace("\\x00", "")
 
         if tag_name == "ISOSpeedRatings":
             sheet[f"E{row}"] = value
-
 
 excel_file = os.path.join(folder_path, "photo_data.xlsx")
 workbook.save(excel_file)
